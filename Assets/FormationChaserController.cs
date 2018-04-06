@@ -12,6 +12,8 @@ public class FormationChaserController : MonoBehaviour {
     private float leftConstraint, rightConstraint = 0.0f;
     private float buffer = 1.0f;
     private float distanceZ = 10.0f;
+    private bool moveRight, moveLeft;
+    //bool para controlar cuando está moviendose.
 
     void Awake()
     {
@@ -30,32 +32,36 @@ public class FormationChaserController : MonoBehaviour {
         {
             Vector2 movement = new Vector2(1, -0f);
             rigidbody.AddForce(movement * chaseSpeed * Time.deltaTime);
-            if (transform.position.x > rightConstraint)
-            {
-                rigidbody.velocity = new Vector2(0,0);
+       
+            if (transform.position.x > rightConstraint + buffer)
+            { 
                 Vector2 movement2 = new Vector2(-1, -0f);
-                rigidbody.AddForce(movement2 * chaseSpeed * Time.deltaTime);
+                rigidbody.AddForce(movement2 * 800 * Time.deltaTime);
             }
 
-            if (transform.position.x < leftConstraint)
+            if (transform.position.x < leftConstraint - buffer)
             {
-                rigidbody.velocity = new Vector2(0, 0);
+                
                 Vector2 movement2 = new Vector2(1, -0f);
-                rigidbody.AddForce(movement2 * chaseSpeed * Time.deltaTime);
+                rigidbody.AddForce(movement2 * 800 * Time.deltaTime);
             }
         }
         else
         {
             Vector2 movement = new Vector2(-1, -0f);
             rigidbody.AddForce(movement * chaseSpeed * Time.deltaTime);
-            if (transform.position.x > rightConstraint)
+            if (transform.position.x > rightConstraint + buffer)
             {
-                rigidbody.velocity = new Vector2(0, 0);
+
+                Vector2 movement2 = new Vector2(-1, -0f);
+                rigidbody.AddForce(movement2 * 800 * Time.deltaTime);
             }
 
-            if (transform.position.x < leftConstraint)
+            if (transform.position.x < leftConstraint - buffer)
             {
-                rigidbody.velocity = new Vector2(0, 0);
+
+                Vector2 movement2 = new Vector2(1, -0f);
+                rigidbody.AddForce(movement2 * 800 * Time.deltaTime);
             }
         }
 
